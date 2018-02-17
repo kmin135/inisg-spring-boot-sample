@@ -21,7 +21,7 @@ public class HelloControllerTest {
 	private MockMvc mvc;
 	
 	@Test 
-	public void shouldShowRegistration() throws Exception {
+	public void shouldShowHelloString() throws Exception {
 		String name = "부트";
 		String resultBody = String.format("Hello, %s", name);
 		this.mvc.perform(get("/hello").param("name", name))
