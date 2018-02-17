@@ -1,12 +1,16 @@
 package inisg.boot.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Project {
+public class Project implements Serializable {
+	private static final long serialVersionUID = 7626224296014027028L;
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -39,5 +43,10 @@ public class Project {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	@Override
+	public String toString() {
+		return "Project [id=" + id + ", name=" + name + ", url=" + url + "]";
 	}
 }
