@@ -30,6 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication()
 			.withUser("hsu.kwon").password("inisg2018").roles("APIUSER");
+		auth.inMemoryAuthentication()
+			.withUser("inisg").password("inisg2018").roles("USER");
 	}
 	
 }
