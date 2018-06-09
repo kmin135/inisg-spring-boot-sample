@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,12 @@ public class ProjectController {
 	@Autowired
 	private ProjectService projectService;
 	
+	@PostMapping
+	public Project saveProject(@RequestBody Project project) {
+		Project savedProject = projectService.saveProject(project);
+		return savedProject;
+	}
+	
 	@GetMapping
 	public List<Project> getProjects() {
 		List<Project> pjts = projectService.getProjects();
@@ -33,11 +40,12 @@ public class ProjectController {
 		Project pjt = projectService.getProject(id);
 		return pjt;
 	}
-	
-	@PostMapping
-	public Project saveProject(@RequestBody Project project) {
-		Project savedProject = projectService.saveProject(project);
-		return savedProject;
+		
+	@PutMapping("/{id}")
+	public Project updateProject(@PathVariable long id, @RequestBody Project project) {
+		project.setId(id);
+		Project updatedProject = projectService.updateProject(project);
+		return updatedProject;
 	}
 	
 	@DeleteMapping("/{id}")

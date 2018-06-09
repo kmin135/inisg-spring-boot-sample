@@ -29,10 +29,16 @@ public class ProjectService {
 		return projectRepo.findAll();
 	}
 	
-	@CacheEvict(value="projectCache", key="#saveProject.id", condition="#saveProject.id != null")
+	@CacheEvict(value="projectCache")
 	public Project saveProject(Project saveProject) {
 		log.debug("# save project {}", saveProject.toString());
 		return projectRepo.save(saveProject);
+	}
+	
+	@CacheEvict(value="projectCache", key="#updateProject.id")
+	public Project updateProject(Project updateProject) {
+		log.debug("# update project {}", updateProject.toString());
+		return projectRepo.save(updateProject);
 	}
 	
 	@CacheEvict(value="projectCache", key="#id")
