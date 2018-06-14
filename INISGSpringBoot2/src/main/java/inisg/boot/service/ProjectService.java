@@ -29,6 +29,7 @@ public class ProjectService {
 		return projectRepo.findAll();
 	}
 	
+	@CacheEvict(value="projectCache", key="#saveProject.id")
 	public Project saveProject(Project saveProject) {
 		log.debug("# save project {}", saveProject.toString());
 		return projectRepo.save(saveProject);
